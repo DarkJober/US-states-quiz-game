@@ -15,7 +15,7 @@ print(list_of_states)
 
 karel = turtle.Turtle()
 guessed_states = []
-not_guessed_states = []
+
 
 while len(guessed_states) < 50:
     karel.penup()
@@ -24,9 +24,7 @@ while len(guessed_states) < 50:
                                     prompt="What's another state's name?").title()
 
     if answer_state == "Exit":
-        for state in list_of_states:
-            if state not in guessed_states:
-                not_guessed_states.append(state)
+        not_guessed_states = [n for n in list_of_states if n not in guessed_states]
         not_guessed_df = pandas.DataFrame(not_guessed_states)
         not_guessed_df.to_csv("missing_states.csv")
         break
